@@ -1,0 +1,10 @@
+**/.vs
+**/bin
+**/obj
+**/*.user
+**/Logs/*
+**/.idea
+**/ResumeImage
+**/images/profileImages
+
+

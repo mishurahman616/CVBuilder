@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@section Styles{
+    <link href='https://fonts.googleapis.com/css?family=Young Serif' rel='stylesheet'>
+}
+<section style="font-family: Young Serif, sans-serif;">
+    <div class="container">
+        <form class="my-5 py-5">
+            <h2 class="text-secondary text-center mb-4 bg-white p-4">Make Your Cover Letter Here</h2>
+            <div class="card">
+                <div class="card-body p-5">
+                    <h3 class="font-weight-bold mb-3 text-info">Your Details</h3>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="exampleInputName">Full Name</label>
+                            <input type="text" class="form-control mb-2" id="exampleInputName" placeholder="Example Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputText1">Address</label>
+                            <input type="text" class="form-control mb-2" id="exampleInputText1" placeholder="House/ Road/ Village" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="exampleInputText2">Extension</label>
+                            <input type="text" class="form-control mb-2" id="exampleInputText2" placeholder="Area/ City/ District/ Postal Code" required>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="exampleInputContact">Contact</label>
+                            <input type="number" class="form-control mb-2" id="exampleInputContact" placeholder="017...." required>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="exampleInputEmail">Email</label>
+                            <input type="email" class="form-control mb-2" id="exampleInputEmail" placeholder="example@yahoo.com" required>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card mt-5">
+                <div class="card-body p-5">
+                    <h3 class="font-weight-bold mb-3 text-info">Recipient Details</h3>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="exampleInputText1">Name of recipient/ department</label>
+                            <input type="text" class="form-control mb-2" id="exampleInputText1" placeholder="The Head of Human Resource" required>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="exampleInputName">Company Name</label>
+                            <input type="text" class="form-control mb-2" id="exampleInputName" placeholder="Example Ltd." required>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="exampleInputAddress">Company Address</label>
+                            <input type="text" class="form-control mb-2" id="exampleInputAddress" placeholder="House/ Area/ City/ Postal Code" required>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card mt-5">
+                <div class="card-body p-5">
+                    <h3 class="font-weight-bold mb-3 text-info">Letter Body</h3>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="exampleInputText1">Recipient addressing</label>
+                            <input type="text" class="form-control mb-2" id="exampleInputText1" value="Dear Sir," required>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputArea">Body</label> <br>
+                            <textarea id="exampleInputArea" class="col-md-12" name="w3review" rows="6" placeholder="I am writing to express..." required></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card mt-5">
+                <div class="card-body p-5">
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <h3 class="font-weight-bold mb-3 text-info">Letter Details</h3>
+                        </div>
+                        <div class="col-6">
+                            <a asp-controller="Letter" asp-action="Example" class="btn btn-outline-success float-right">See Examples</a>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="exampleInputDate">Letter Date</label>
+                            <input type="date" class="form-control mb-2" id="exampleInputDate" placeholder="" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="exampleInputName">Letter Name</label>
+                            <input type="text" class="form-control mb-2" id="exampleInputName" value="Cover Letter 1" required>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-info">Create Letter</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+

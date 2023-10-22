@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+
+@section Styles
+    {
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/adminLte3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/adminLte3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/adminLte3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+}
+
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">User Table</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="userTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Image</th>
+                                    <th class="text-left">Full Name</th>
+                                    <th class="text-center">Role</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">Image</th>
+                                    <th class="text-left">Full Name</th>
+                                    <th class="text-center">Role</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@section Scripts
+    {
+    <!-- DataTables  & Plugins -->
+    <script src="~/adminLte3/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/adminLte3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/adminLte3/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/adminLte3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/adminLte3/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/adminLte3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/adminLte3/plugins/jszip/jszip.min.js"></script>
+    <script src="~/adminLte3/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/adminLte3/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/adminLte3/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/adminLte3/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/adminLte3/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $('#userTable').DataTable({
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "/admin/user/get-users",
+                },
+                "columns":
+                    [
+                        {
+                            "data": "0",  // ImageUrl
+                            "render": function (data, type, row) {
+                                if (type === "display" && data !== null && data !== "") {
+                                    return '<img src="' + data + '" alt="." class="rounded-circle" style="max-width: 30px; max-height: 70px;" />';
+                                } else {
+                                    return '<img src="' + data + '" alt="." class="rounded-circle" style="max-width: 30px; max-height: 70px;" />'; // Return the URL as is if it's not an image URL
+                                }
+                            }
+                        },
+                        { "data": "1" },  // FullName
+
+                        { "data": "2" },  // ClaimType
+                        {
+                            "data": "3",  // IsActive
+                            "render": function (data, type, row) {
+                                var statusBadgeClass = data == "True" ? "badge badge-success" : "badge badge-danger";
+                                var statusText = data == "True" ? "Active" : "InActive";
+                                return '<span class="' + statusBadgeClass + '">' + statusText + '</span>';
+                            }
+                        },
+                        {
+                            "data": null,  // Actions column
+                            "render": function (data, type, row) {
+                                return '<button class="btn btn-info btn-sm btn-edit"><i class="fas fa-pencil-alt"></i> Edit</button>' +
+                                    '<span style="margin-right: 10px;"></span>' +  // Add padding
+                                    '<button class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Delete</button>';
+                            }
+                        }
+                    ],
+                "columnDefs":
+                    [
+                        { "className": "text-center", "targets": [0, 2, 3, 4] }, // Center-align columns
+                        { "className": "text-left", "targets": [1] } // Left-align the FullName column
+                    ],
+                "responsive": true
+
+            });
+        });
+    </script>
+}
